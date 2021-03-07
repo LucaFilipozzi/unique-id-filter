@@ -1,5 +1,7 @@
 ![languages count][languages-count] ![top language][languages-top] ![lgtm][lgtm]
 
+![LGTM alerts][lgtm-alerts-shield][lgtm-alerts-taarget]
+
 ![tag][tag] ![build][build] ![analyze][analyze] ![dependencies][dependencies]
 
 ![license][license] ![maintenance][maintenance] ![osslifecycle][osslifecycle]
@@ -14,6 +16,8 @@ This servlet filter generates a UUID4 for each servlet request.
 [languages-top]: https://img.shields.io/github/languages/top/LucaFilipozzi/unique-id-filter
 [languages-count]: https://img.shields.io/github/languages/count/LucaFilipozzi/unique-id-filter
 [lgtm]: https://img.shields.io/lgtm/grade/java/github/LucaFilipozzi/unique-id-filter
+[lgtm-alerts-shield]: https://img.shields.io/lgtm/alerts/g/LucaFilipozzi/unique-id-filter.svg?logo=lgtm&logoWidth=18
+[lgtm-alerts-target]: https://lgtm.com/projects/g/LucaFilipozzi/unique-id-filter/alerts
 [license]: https://img.shields.io/github/license/LucaFilipozzi/unique-id-filter
 [maintenance]: https://img.shields.io/maintenance/yes/2021
 [osslifecycle]: https://img.shields.io/osslifecycle/LucaFilipozzi/unique-id-filter
