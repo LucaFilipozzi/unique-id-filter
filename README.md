@@ -16,4 +16,4 @@ This servlet filter generates a UUID4 for each servlet request.
 [license]: https://img.shields.io/github/license/LucaFilipozzi/unique-id-filter
 [maintenance]: https://img.shields.io/maintenance/yes/2021
 [osslifecycle]: https://img.shields.io/osslifecycle/LucaFilipozzi/unique-id-filter
-[tag]: https://img.shields.io/github/v/tag/LucaFilipozzi/unique-id-filter
+[tag]: https://img.shields.io/github/v/tag/LucaFilipozzi/unique-id-filter?sort=semver
