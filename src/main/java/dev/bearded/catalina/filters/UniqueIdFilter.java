@@ -40,7 +40,7 @@ public class UniqueIdFilter implements javax.servlet.Filter {
   }
 
   static class UniqueIdRequest extends HttpServletRequestWrapper {
-    final String name = "x-unique-id";
+    static final String name = "x-unique-id";
     final String value = UUID.randomUUID().toString();
 
     public UniqueIdRequest(HttpServletRequest request) {
@@ -50,7 +50,7 @@ public class UniqueIdFilter implements javax.servlet.Filter {
 
     @Override
     public String getHeader(String name) {
-      if (this.name.equalsIgnoreCase(name)) {
+      if (UniqueIdRequest.name.equalsIgnoreCase(name)) {
         return value;
       }
       return super.getHeader(name);
@@ -58,7 +58,7 @@ public class UniqueIdFilter implements javax.servlet.Filter {
 
     @Override
     public Enumeration<String> getHeaders(String name) {
-      if (this.name.equalsIgnoreCase(name)) {
+      if (UniqueIdRequest.name.equalsIgnoreCase(name)) {
         List<String> values = Collections.singletonList(value);
         return Collections.enumeration(values);
       }
@@ -68,7 +68,7 @@ public class UniqueIdFilter implements javax.servlet.Filter {
     @Override
     public Enumeration<String> getHeaderNames() {
       List<String> names = Collections.list(super.getHeaderNames());
-      names.add(this.name);
+      names.add(UniqueIdRequest.name);
       return Collections.enumeration(names);
     }
   }
