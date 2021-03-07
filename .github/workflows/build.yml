@@ -1,6 +1,4 @@
-# This workflow will build a Java project with Maven
-
-name: Java CI with Maven
+name: build
 
 on:
   push:
@@ -10,9 +8,7 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v2
     - name: Set up JDK 1.8
