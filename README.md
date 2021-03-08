@@ -1,14 +1,14 @@
 [![license][license-img]][license-url]
-![languages][languages-img]
+[![languages][languages-img]][languages-url]
 [![tags][tags-img]][tags-url]
-![dependabot](https://flat.badgen.net/github/dependabot/LucaFilipozzi/unique-id-filter?icon=dependabot)
+[![dependabot][dependabot-img]][dependabot-url]
 
 [![build][build-img]][build-url]
 [![analyze][analyze-img]][analyze-url]
 [![alerts][alerts-img]][alerts-url]
 [![quality][quality-img]][quality-url]
 
-[![maintained][maintained-img]][maintained-url]
+[![issue resolution][issue-resolution-img]][issue-resolution-url]
 [![open issues %][open-issues-percent-img]][open-issues-percent-url]
 [![open issues #][open-issues-number-img]][open-issues-number-url]
 [![open pull requests][open-pull-requests-img]][open-pull-requests-url]
@@ -29,9 +29,14 @@ This servlet filter generates a UUID4 for each servlet request.
 [build-img]: https://github.com/LucaFilipozzi/unique-id-filter/actions/workflows/build.yml/badge.svg
 [build-url]: https://github.com/LucaFilipozzi/unique-id-filter/actions/workflows/build.yml
 [codestyle-img]: https://flat.badgen.net/
+[dependabot-img]: https://flat.badgen.net/github/dependabot/LucaFilipozzi/unique-id-filter?icon=dependabot
+[dependabot-url]: https://github.com/LucaFilipozzi/unique-id-filter/network/dependencies
 [dependencies-img]: https://img.shields.io/librariesio/github/LucaFilipozzi/unique-id-filter
 [dependencies-url]: https://libraries.io/github/LucaFilipozzi/unique-id-filter/dependencies
+[issue-resolution-img]: http://isitmaintained.com/badge/resolution/LucaFilipozzi/unique-id-filter.svg
+[issue-resolution-url]: http://isitmaintained.com/project/LucaFilipozzi/unique-id-filter
 [languages-img]: https://flat.badgen.net/lgtm/langs/g/LucaFilipozzi/unique-id-filter
+[languages-url]: https://lgtm.com/projects/g/LucaFilipozzi/unique-id-filter/logs/languages/lang:java
 [license-img]: https://flat.badgen.net/github/license/LucaFilipozzi/unique-id-filter
 [license-url]: https://github.com/LucaFilipozzi/unique-id-filter/blob/main/LICENSE.md
 [open-issues-number-img]: https://flat.badgen.net/github/open-issues/LucaFilipozzi/unique-id-filter?icon=github
@@ -42,10 +47,8 @@ This servlet filter generates a UUID4 for each servlet request.
 [open-pull-requests-url]: https://github.com/LucaFilipozzi/unique-id-filter/pulls
 [technical-debt-img]: https://flat.badgen.net/codeclimate/tech-debt/LucaFilipozzi/unique-id-filter?icon=codeclimate
 [technical-debt-url]: https://codeclimate.com/github/LucaFilipozzi/unique-id-filter/maintainability
-[maintainability-img]: https://flat.badgen.net/codeclimate/maintainability-percentage/LucaFilipozzi/unique-id-filter?icon=codeclimate
+[maintainability-img]: https://flat.badgen.net/codeclimate/maintainability/LucaFilipozzi/unique-id-filter?icon=codeclimate
 [maintainability-url]: https://codeclimate.com/github/LucaFilipozzi/unique-id-filter/maintainability
-[maintained-img]: http://isitmaintained.com/badge/resolution/LucaFilipozzi/unique-id-filter.svg
-[maintained-url]: http://isitmaintained.com/project/LucaFilipozzi/unique-id-filter
 [vulnerabilities-img]: https://flat.badgen.net/snyk/LucaFilipozzi/unique-id-filter/main/pom.xml
 [vulnerabilities-url]: https://snyk.io/test/github/lucafilipozzi/unique-id-filter?targetFile=pom.xml
 [tags-img]: https://flat.badgen.net/github/tag/LucaFilipozzi/unique-id-filter
