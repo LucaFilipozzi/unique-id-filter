@@ -13,7 +13,7 @@
 
 [![languages][languages-img]][languages-url]
 [![alerts][alerts-img]][alerts-url]
-[![code-quality][code-quality-img]][code-quality-url]
+[![code quality][code-quality-img]][code-quality-url]
 
 [![maintainability][maintainability-img]][maintainability-url]
 [![technical debt][technical-debt-img]][technical-debt-url]
