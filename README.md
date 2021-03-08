@@ -1,19 +1,18 @@
 [![license][license-img]][license-url]
 [![languages][languages-img]][languages-url]
 [![latest tag][latest-tag-img]][latest-tag-url]
-[![dependabot][dependabot-img]][dependabot-url]
-
-[![build][build-img]][build-url]
-[![analyze][analyze-img]][analyze-url]
-[![alerts][alerts-img]][alerts-url]
-[![code-quality][code-quality-img]][code-quality-url]
 
 [![issue resolution][issue-resolution-img]][issue-resolution-url]
 [![open issues %][open-issues-percent-img]][open-issues-percent-url]
 [![open issues #][open-issues-number-img]][open-issues-number-url]
 [![open pull requests][open-pull-requests-img]][open-pull-requests-url]
 
-[![dependencies][dependencies-img]][dependencies-url]
+[![build][build-img]][build-url]
+[![analyze][analyze-img]][analyze-url]
+[![alerts][alerts-img]][alerts-url]
+[![code-quality][code-quality-img]][code-quality-url]
+
+[![dependabot][dependabot-img]][dependabot-url]
 [![maintainability][maintainability-img]][maintainability-url]
 [![technical debt][technical-debt-img]][technical-debt-url]
 [![vulnerabilities][vulnerabilities-img]][vulnerabilities-url]
@@ -32,8 +31,6 @@ This servlet filter generates a UUID4 for each servlet request.
 [code-quality-url]: https://lgtm.com/projects/g/LucaFilipozzi/unique-id-filter/context:java
 [dependabot-img]: https://badgen.net/github/dependabot/LucaFilipozzi/unique-id-filter?icon=dependabot
 [dependabot-url]: https://github.com/LucaFilipozzi/unique-id-filter/network/dependencies
-[dependencies-img]: https://img.shields.io/librariesio/github/LucaFilipozzi/unique-id-filter
-[dependencies-url]: https://libraries.io/github/LucaFilipozzi/unique-id-filter/dependencies
 [issue-resolution-img]: http://isitmaintained.com/badge/resolution/LucaFilipozzi/unique-id-filter.svg
 [issue-resolution-url]: http://isitmaintained.com/project/LucaFilipozzi/unique-id-filter
 [languages-img]: https://badgen.net/lgtm/langs/g/LucaFilipozzi/unique-id-filter?icon=lgtm
