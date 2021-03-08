@@ -1,5 +1,4 @@
 [![license][license-img]][license-url]
-[![languages][languages-img]][languages-url]
 [![latest tag][latest-tag-img]][latest-tag-url]
 [![latest release][latest-release-img]][latest-release-url]
 
@@ -10,10 +9,12 @@
 
 [![build][build-img]][build-url]
 [![analyze][analyze-img]][analyze-url]
+[![dependabot][dependabot-img]][dependabot-url]
+
+[![languages][languages-img]][languages-url]
 [![alerts][alerts-img]][alerts-url]
 [![code-quality][code-quality-img]][code-quality-url]
 
-[![dependabot][dependabot-img]][dependabot-url]
 [![maintainability][maintainability-img]][maintainability-url]
 [![technical debt][technical-debt-img]][technical-debt-url]
 [![vulnerabilities][vulnerabilities-img]][vulnerabilities-url]
