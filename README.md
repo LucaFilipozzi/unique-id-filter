@@ -1,6 +1,7 @@
 [![license][license-img]][license-url]
 [![languages][languages-img]][languages-url]
 [![latest tag][latest-tag-img]][latest-tag-url]
+[![latest release][latest-release-img]][latest-release-url]
 
 [![issue resolution][issue-resolution-img]][issue-resolution-url]
 [![open issues %][open-issues-percent-img]][open-issues-percent-url]
@@ -45,6 +46,8 @@ This servlet filter generates a UUID4 for each servlet request.
 [open-issues-percent-url]: http://isitmaintained.com/project/LucaFilipozzi/unique-id-filter
 [open-pull-requests-img]: https://badgen.net/github/open-prs/LucaFilipozzi/unique-id-filter?icon=github
 [open-pull-requests-url]: https://github.com/LucaFilipozzi/unique-id-filter/pulls
+[latest-release-img]: https://badgen.net/github/release/LucaFilipozzi/unique-id-filter
+[latest-release-url]: https://github.com/LucaFilipozzi/unique-id-filter/releases/latest
 [technical-debt-img]: https://badgen.net/codeclimate/tech-debt/LucaFilipozzi/unique-id-filter?icon=codeclimate
 [technical-debt-url]: https://codeclimate.com/github/LucaFilipozzi/unique-id-filter/maintainability
 [maintainability-img]: https://badgen.net/codeclimate/maintainability/LucaFilipozzi/unique-id-filter?icon=codeclimate
