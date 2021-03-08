@@ -8,7 +8,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>dev.bearded</groupId>
   <artifactId>unique-id-filter</artifactId>
-  <version>1.0.3</version>
+  <version>1.0.4</version>
   <name>unique-id-filter</name>
   <description>adds a unique-id per request</description>
 
