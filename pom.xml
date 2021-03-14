@@ -8,7 +8,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.github.lucafilipozzi.catalina.filters</groupId>
   <artifactId>unique-id-filter</artifactId>
-  <version>1.0.7</version>
+  <version>1.0.8</version>
   <name>unique-id-filter</name>
   <description>adds a unique-id per request</description>
 
@@ -29,7 +29,7 @@
     <repository>
       <id>github</id>
       <name>GitHub Packages</name>
-      <url>https://maven.pkg.github.com/LucaFilipozzi/${artifactId}</url>
+      <url>https://maven.pkg.github.com/LucaFilipozzi/${project.artifactId}</url>
     </repository>
   </distributionManagement>
 
@@ -136,6 +136,13 @@
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-checkstyle-plugin</artifactId>
         <version>3.1.2</version>
+        <dependencies>
+          <dependency>
+            <groupId>com.puppycrawl.tools</groupId>
+            <artifactId>checkstyle</artifactId>
+            <version>8.41</version>
+          </dependency>
+        </dependencies>
         <configuration>
           <configLocation>google_checks.xml</configLocation>
           <consoleOutput>true</consoleOutput>
