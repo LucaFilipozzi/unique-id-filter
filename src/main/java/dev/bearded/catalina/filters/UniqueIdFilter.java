@@ -6,7 +6,7 @@
 //
 // based on https://stackoverflow.com/a/23590606/507056
 
-package dev.bearded.catalina.filters;
+package com.github.lucafilipozzi.catalina.filters;
 
 import java.io.IOException;
 import java.util.Collections;
