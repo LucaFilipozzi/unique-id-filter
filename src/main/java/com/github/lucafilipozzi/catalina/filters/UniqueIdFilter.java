@@ -4,7 +4,8 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 //
-// based on https://stackoverflow.com/a/23590606/507056
+// request wrapper based on https://stackoverflow.com/a/23590606/507056
+// generates ECS fields per https://github.com/elastic/ecs/issues/998#issuecomment-705270230
 
 package com.github.lucafilipozzi.catalina.filters;
 
@@ -40,12 +41,26 @@ public class UniqueIdFilter implements javax.servlet.Filter {
   }
 
   static class UniqueIdRequest extends HttpServletRequestWrapper {
-    static final String name = "x-unique-id";
-    final String value = UUID.randomUUID().toString();
+    static final String name = "x-request-id";
+    String value;
 
     public UniqueIdRequest(HttpServletRequest request) {
       super(request);
-      request.setAttribute(name, value);
+
+      // extract and log trace.id, parent.id, and transaction.id
+      final String[] tracingValues = request.getParameter(name).split("\\.", 2);
+      // TODO add error handling
+      final String traceId = tracingValues[0];
+      final String parentId = tracingValues[1];
+      final String transactionId = UUID.randomUUID().toString();
+      request.setAttribute("x-ecs-trace-id", traceId);
+      request.setAttribute("x-ecs-parent-id", parentId);
+      request.setAttribute("x-ecs-transaction-id", transactionId);
+
+      // propagate trace.id and span.id
+      final String spanId = UUID.randomUUID().toString();
+      request.setAttribute("x-ecs-span-id", spanId);
+      value = traceId + "." + spanId;
     }
 
     @Override

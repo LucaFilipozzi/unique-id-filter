@@ -23,12 +23,17 @@
 
 This servlet filter, for each incoming request:
 
-* parses the incoming x-request-id into x-ecs-trace-id and x-ecs-parent-id attributes (TODO)
-* generates a UUID4 into x-ecs-transaction-id attribute (TODO)
+* decodes the incoming x-request-id into x-ecs-trace-id and x-ecs-parent-id attributes
+* generates a first UUID4 into x-ecs-transaction-id attribute
+* generates another UUID4 into x-ecs-span-id attribute
+* encodes x-ecs-trace-id and x-ecs-span-id into outgoing x-request-id
 
-Why? To support [Elastic Common Scheme](https://www.elastic.co/guide/en/ecs/current/index.html)'s [tracing fields](https://www.elastic.co/guide/en/ecs/current/ecs-tracing.html) (trace.id, parent.id, transation.id, and span.id) in [tomcat9](https://tomcat.apache.org/tomcat-9.0-doc/).
+Why? To support [Elastic Common Scheme][ecs-homepage]'s [tracing fields][ecs-tracing] (trace.id,
+parent.id, transation.id, and span.id) in [tomcat9][tomcat9-home].
 
-The following sequence diagram (install this [browser extension](https://github.com/marcozaccari/markdown-diagrams-browser-extension) to render the diagram... why doesn't github support [mermaid](https://mermaid-js.github.io/mermaid/#/)?!?) explains how these tracing fields are propagated through a tech stack.
+The following sequence diagram (install this [browser extension][browser-extn] to render the
+diagram... why doesn't github support [mermaid][mermaid-home] natively?!?) explains how these
+tracing fields are used.
 
 Essentially, [the rules](https://github.com/elastic/ecs/issues/998#issuecomment-705270230) are:
 
@@ -37,10 +42,22 @@ Essentially, [the rules](https://github.com/elastic/ecs/issues/998#issuecomment-
 * outgoing requests are assgined a span.id
 
 ```mermaid
-%%{init: {"theme": "base", "themeVariables": {"primaryColor": "#59616d", "secondaryColor": "#59616d", "primaryTextColor": "#7c702f", "actorTextColor": "#ffffff", "noteBkgColor": "#59616d", "noteTextColor": "#ffffff"}} }%%
+%%{
+  init: {
+    "theme": "base",
+    "themeVariables": {
+      "primaryColor": "#59616d",
+      "secondaryColor": "#59616d",
+      "primaryTextColor": "#7c702f",
+      "actorTextColor": "#ffffff",
+      "noteBkgColor": "#59616d",
+      "noteTextColor": "#ffffff"
+    }
+  }
+}%%
 sequenceDiagram
   # external request is assigned a trace.id
-  # incoming requests are assigned an transaction.id
+  # incoming requests are assigned a transaction.id
   # outgoing requests are assigned a span.id
   autonumber
   participant A as client<br/>(browser)
@@ -93,6 +110,11 @@ sequenceDiagram
   deactivate A
 ```
 
+[ecs-homepage]: https://www.elastic.co/guide/en/ecs/current/index.html
+[ecs-tracing]: https://www.elastic.co/guide/en/ecs/current/ecs-tracing.html
+[tomcat9-home]: https://tomcat.apache.org/tomcat-9.0-doc/
+[mermaid-home]: https://mermaid-js.github.io/mermaid/#/
+[browser-extn]: https://github.com/marcozaccari/markdown-diagrams-browser-extension
 [alerts-img]: https://badgen.net/lgtm/alerts/g/LucaFilipozzi/unique-id-filter/java?icon=lgtm
 [alerts-url]: https://lgtm.com/projects/g/LucaFilipozzi/unique-id-filter/alerts
 [analyze-img]: https://github.com/LucaFilipozzi/unique-id-filter/actions/workflows/analyze.yml/badge.svg
