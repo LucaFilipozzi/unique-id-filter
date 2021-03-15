@@ -21,13 +21,16 @@
 
 # unique-id-filter
 
-This servlet filter generates a UUID4 for each servlet request.
+This servlet filter, for each incoming request:
 
-Why? To support the [Elastic Common Scheme](https://www.elastic.co/guide/en/ecs/current/index.html) tracing fields (trace.id, parent.id, transation.id, and span.id) in [tomcat9](https://tomcat.apache.org/tomcat-9.0-doc/).
+* parses the incoming x-request-id into x-ecs-trace-id and x-ecs-parent-id attributes (TODO)
+* generates a UUID4 into x-ecs-transaction-id attribute (TODO)
+
+Why? To support [Elastic Common Scheme](https://www.elastic.co/guide/en/ecs/current/index.html)'s [tracing fields](https://www.elastic.co/guide/en/ecs/current/ecs-tracing.html) (trace.id, parent.id, transation.id, and span.id) in [tomcat9](https://tomcat.apache.org/tomcat-9.0-doc/).
 
 The following sequence diagram (install this [browser extension](https://github.com/marcozaccari/markdown-diagrams-browser-extension) to render the diagram... why doesn't github support [mermaid](https://mermaid-js.github.io/mermaid/#/)?!?) explains how these tracing fields are propagated through a tech stack.
 
-Effectively, the rules are:
+Essentially, [the rules](https://github.com/elastic/ecs/issues/998#issuecomment-705270230) are:
 
 * the external request is assigned a trace.id that is propagaged throughout the tech stack
 * incoming requests are assigned a transaction.id
