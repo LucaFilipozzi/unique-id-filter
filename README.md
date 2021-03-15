@@ -23,23 +23,24 @@
 
 This servlet filter, for each incoming request:
 
-* decodes the incoming x-request-id into x-ecs-trace-id and x-ecs-parent-id attributes
-* generates a first UUID4 into x-ecs-transaction-id attribute
-* generates another UUID4 into x-ecs-span-id attribute
-* encodes x-ecs-trace-id and x-ecs-span-id into outgoing x-request-id
+* decodes the incoming `x-request-id` into traceId and parentId
+* generates UUID4 for transactionId
+* generates UUID4 for spanId
+* encodes traceId and spanId into outgoing `x-request-id`
 
-Why? To support [Elastic Common Scheme][ecs-homepage]'s [tracing fields][ecs-tracing] (trace.id,
-parent.id, transation.id, and span.id) in [tomcat9][tomcat9-home].
+Why? To support [Elastic Common Scheme][ecs-homepage]'s [tracing fields][ecs-tracing-doc] (traceId,
+parentId, transationId, and spanId) in [tomcat9][tomcat9-home].
 
-The following sequence diagram (install this [browser extension][browser-extn] to render the
-diagram... why doesn't github support [mermaid][mermaid-home] natively?!?) explains how these
-tracing fields are used.
+The following sequence diagram (install this [browser extension][browser-extn] to render the diagram
+because github does not support [mermaid][mermaid-home] natively) explains how these tracing fields
+are used.
 
-Essentially, [the rules](https://github.com/elastic/ecs/issues/998#issuecomment-705270230) are:
+Essentially, [the guidelines for using the tracing fields][ecs-tracing-use] are:
 
-* the external request is assigned a trace.id that is propagaged throughout the tech stack
-* incoming requests are assigned a transaction.id
-* outgoing requests are assgined a span.id
+* external request is assigned a trace.id that is used throughout the tech stack
+* internal requests contain trace.id and parent.id in `x-request-id`, are assigned a transaction.id:
+  use trace.id, parent.id, and transaction.id in logging statements
+* outgoing requests are assgined a span.id: propagate trace.id and span.id
 
 ```mermaid
 %%{
@@ -111,7 +112,8 @@ sequenceDiagram
 ```
 
 [ecs-homepage]: https://www.elastic.co/guide/en/ecs/current/index.html
-[ecs-tracing]: https://www.elastic.co/guide/en/ecs/current/ecs-tracing.html
+[ecs-tracing-doc]: https://www.elastic.co/guide/en/ecs/current/ecs-tracing.html
+[ecs-tracing-use]: https://github.com/elastic/ecs/issues/998#issuecomment-705270230
 [tomcat9-home]: https://tomcat.apache.org/tomcat-9.0-doc/
 [mermaid-home]: https://mermaid-js.github.io/mermaid/#/
 [browser-extn]: https://github.com/marcozaccari/markdown-diagrams-browser-extension
