@@ -53,7 +53,7 @@ sequenceDiagram
   note over B: span.id = T1S1
   B->>+C: internal request<br/>x-request-id: UUID.T1S1
   note over C: trace.id = UUID<br/>parent.id = T1S1<br/>transaction.id = T2
-  C-->-B: internal response<br/>x-request-id: UUID.T1S1
+  C->>-B: internal response<br/>x-request-id: UUID.T1S1
   note over B: span.id = T1S2
   B->>+D: internal request<br/>x-request-id: UUID.T1S2
   note over D: trace.id = UUID<br/>parent.id = T1S2<br/>transaction.id = T3
