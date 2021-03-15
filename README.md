@@ -28,7 +28,7 @@ This servlet filter, for each incoming request:
 * generates UUID4 for spanId
 * encodes traceId and spanId into outgoing `x-request-id` header
 
-Why? To support [Elastic Common Scheme][ecs-homepage]'s [tracing fields][ecs-tracing-doc] in
+Why? To support [Elastic Common Schema][ecs-homepage]'s [tracing fields][ecs-tracing-doc] in
 [tomcat9][tomcat9-home].
 
 The following sequence diagram (install this [browser extension][browser-extn] to render the diagram
@@ -44,6 +44,13 @@ Essentially, [the guidelines for using the tracing fields][ecs-tracing-use] are:
   parsed for traceId and parentId (parent's spanId)
 * traceId is propagated throughout the stack to group logging events
 * logging events must include traceId, parentId, and transactionId
+
+where the above uses a single request header, `x-request-id` to transport values through the tech
+stack.
+
+Finally, in the diagram below, strings such as "T2S1" might lead one to conclude that they include
+the value of T2. Not so. Each of these is just another UUID4 and "T2S1" is used as a short string
+for use in the diagram. (Perhaps using random short strings is more appropriate. - TODO)
 
 ```mermaid
 %%{
