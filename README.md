@@ -23,13 +23,13 @@
 
 This servlet filter, for each incoming request:
 
-* decodes the incoming `x-request-id` into traceId and parentId
+* decodes incoming `x-request-id` header into traceId and parentId
 * generates UUID4 for transactionId
 * generates UUID4 for spanId
-* encodes traceId and spanId into outgoing `x-request-id`
+* encodes traceId and spanId into outgoing `x-request-id` header
 
-Why? To support [Elastic Common Scheme][ecs-homepage]'s [tracing fields][ecs-tracing-doc] (traceId,
-parentId, transationId, and spanId) in [tomcat9][tomcat9-home].
+Why? To support [Elastic Common Scheme][ecs-homepage]'s [tracing fields][ecs-tracing-doc] in
+[tomcat9][tomcat9-home].
 
 The following sequence diagram (install this [browser extension][browser-extn] to render the diagram
 because github does not support [mermaid][mermaid-home] natively) explains how these tracing fields
@@ -37,10 +37,13 @@ are used.
 
 Essentially, [the guidelines for using the tracing fields][ecs-tracing-use] are:
 
-* external request is assigned a trace.id that is used throughout the tech stack
-* internal requests contain trace.id and parent.id in `x-request-id`, are assigned a transaction.id:
-  use trace.id, parent.id, and transaction.id in logging statements
-* outgoing requests are assgined a span.id: propagate trace.id and span.id
+* incoming external requests are assigned a traceId and a transactionId
+* traceId is used throughout the stack to group logging events
+* incoming internal requests are assigned a transactionId and the incoming `x-request-id` header is
+  parsed for traceId and parentId (parent's spanId)
+* outgoing internal requests are assigned a spanId (interpreted as parentId by the receiver) which
+  is encoded into outgoing `x-request-id` along with traceId
+* logging events use traceId, parentId, and transactionId
 
 ```mermaid
 %%{
