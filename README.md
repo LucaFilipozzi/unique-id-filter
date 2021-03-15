@@ -38,12 +38,12 @@ are used.
 Essentially, [the guidelines for using the tracing fields][ecs-tracing-use] are:
 
 * incoming external requests are assigned a traceId and a transactionId
-* traceId is used throughout the stack to group logging events
+* outgoing internal requests are assigned a spanId which is encoded into the outgoing
+  `x-request-id` along with traceId
 * incoming internal requests are assigned a transactionId and the incoming `x-request-id` header is
   parsed for traceId and parentId (parent's spanId)
-* outgoing internal requests are assigned a spanId (interpreted as parentId by the receiver) which
-  is encoded into outgoing `x-request-id` along with traceId
-* logging events use traceId, parentId, and transactionId
+* traceId is propagated throughout the stack to group logging events
+* logging events must include traceId, parentId, and transactionId
 
 ```mermaid
 %%{
