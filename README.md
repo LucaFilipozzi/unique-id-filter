@@ -23,6 +23,73 @@
 
 This servlet filter generates a UUID4 for each servlet request.
 
+Why? To support the [Elastic Common Scheme](https://www.elastic.co/guide/en/ecs/current/index.html) tracing fields (trace.id, parent.id, transation.id, and span.id) in [tomcat9](https://tomcat.apache.org/tomcat-9.0-doc/).
+
+The following sequence diagram (install this [browser extension](https://github.com/marcozaccari/markdown-diagrams-browser-extension) to render the diagram... why doesn't github support [mermaid](https://mermaid-js.github.io/mermaid/#/)?!?) explains how these tracing fields are propagated through a tech stack.
+
+Effectively, the rules are:
+
+* the external request is assigned a trace.id that is propagaged throughout the tech stack
+* incoming requests are assigned a transaction.id
+* outgoing requests are assgined a span.id
+
+```mermaid
+%%{init: {"theme": "base", "themeVariables": {"primaryColor": "#59616d", "secondaryColor": "#59616d", "primaryTextColor": "#7c702f", "actorTextColor": "#ffffff", "noteBkgColor": "#59616d", "noteTextColor": "#ffffff"}} }%%
+sequenceDiagram
+  # external request is assigned a trace.id
+  # incoming requests are assigned an transaction.id
+  # outgoing requests are assigned a span.id
+  autonumber
+  participant A as client<br/>(browser)
+  participant B as web server<br/>(apache)
+  participant C as asset cache<br/>(varnish)
+  participant D as app server<br/>(tomcat)
+  participant E as application
+  participant F as api
+  participant G as database
+  activate A
+  A->>+B: external request<br/>x-request-id: X|null
+  note over B: trace.id = UUID<br/>parent.id = X|null<br/>transaction.id = T1
+  note over B: span.id = T1S1
+  B->>+C: internal request<br/>x-request-id: UUID.T1S1
+  note over C: trace.id = UUID<br/>parent.id = T1S1<br/>transaction.id = T2
+  C-->-B: internal response<br/>x-request-id: UUID.T1S1
+  note over B: span.id = T1S2
+  B->>+D: internal request<br/>x-request-id: UUID.T1S2
+  note over D: trace.id = UUID<br/>parent.id = T1S2<br/>transaction.id = T3
+  note over D: span.id = T3S1
+  D->>+E: internal request<br/>x-request-id: UUID.T3S1
+  note over E: trace.id = UUID<br/>parent.id = T3S1<br/>transaction.id = T4
+  note over E: span.id = T4S1
+  E->>+F: internal request<br/>x-request-id: UUID.T4S1
+  note over F: trace.id = UUID<br/>parent.id = T4S1<br/>transaction.id = T5
+  note over F: span.id = T5S1
+  F->>+G: internal request<br/>x-request-id: UUID.T5S1
+  note over G: trace.id = UUID<br/>parent.id = T5S1<br/>transaction.id = T6
+  G->>-F: internal response<br/>x-request-id: UUID.T5S1
+  note over F: span.id = T5S2
+  F->>+G: internal request<br/>x-request-id: UUID.T5S2
+  note over G: trace.id = UUID<br/>parent.id = T5S2<br/>transaction.id = T7
+  G->>-F: internal response<br/>x-request-id: UUID.T5S2
+  F->>-E: internal response<br/>x-request-id: UUID.T4S1
+  note over E: span.id = T4S2
+  E->>+F: internal request<br/>x-request-id: UUID.T4S2
+  note over F: trace.id = UUID<br/>parent.id = T4S2<br/>transaction.id = T8
+  note over F: span.id = T8S1
+  F->>+G: internal request<br/>x-request-id: UUID.T8S1
+  note over G: trace.id = UUID<br/>parent.id = T8S1<br/>transaction.id = T9
+  G->>-F: internal response<br/>x-request-id: UUID.T8S1
+  note over F: span.id = T8S2
+  F->>+G: internal request<br/>x-request-id: UUID.T8S2
+  note over G: trace.id = UUID<br/>parent.id = T8S2<br/>transaction.id = T10
+  G->>-F: internal response<br/>x-request-id: UUID.T8S2
+  F->>-E: internal response<br/>x-request-id: UUID.T4S2
+  E->>-D: internal response<br/>x-request-id: UUID.T3S1
+  D->>-B: internal response<br/>x-request-id: UUID.T1S2
+  B->>-A: external response<br/>x-request-id: X|null
+  deactivate A
+```
+
 [alerts-img]: https://badgen.net/lgtm/alerts/g/LucaFilipozzi/unique-id-filter/java?icon=lgtm
 [alerts-url]: https://lgtm.com/projects/g/LucaFilipozzi/unique-id-filter/alerts
 [analyze-img]: https://github.com/LucaFilipozzi/unique-id-filter/actions/workflows/analyze.yml/badge.svg
