@@ -16,13 +16,13 @@ jobs:
       matrix:
         language: [ 'java' ]
     steps:
-    - name: Checkout repository
+    - name: checkout repository
       uses: actions/checkout@v2
-    - name: Initialize CodeQL
+    - name: initialize CodeQL
       uses: github/codeql-action/init@v1
       with:
         languages: ${{ matrix.language }}
-    - name: Autobuild
+    - name: autobuild
       uses: github/codeql-action/autobuild@v1
-    - name: Perform CodeQL Analysis
+    - name: perform CodeQL analysis
       uses: github/codeql-action/analyze@v1
